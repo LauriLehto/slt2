@@ -12,7 +12,6 @@ export async function getFarms(dispatch) {
     try {
       const result = await fetch('api/farms')
       const farms = await result.json()
-      console.log(farms)
       return onSuccess(farms);
     } catch (error) {
       return onError(error);

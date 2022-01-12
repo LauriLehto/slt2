@@ -5,7 +5,6 @@ const farmReducer = (state = [], { type, payload }) => {
   //console.log(type)
   switch (type) {
     case types.FARMS:
-      console.log(payload)
       return payload
     default:
       return state
