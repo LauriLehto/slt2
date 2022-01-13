@@ -14,9 +14,15 @@ const farmReducer = (state = [], { type, payload }) => {
 const sensorReducer = (state = [], { type, payload }) => {
   switch (type) {
     case types.SENSORS:
-      return {
-        farm: payload.farm
+      console.log("state length", state.length, "payload", payload)
+      let newState = [...state]
+      const farmIndex = newState.findIndex(object => object.farm_id === payload.farm_id )
+      if(farmIndex!==-1){
+        newState[farmIndex] = payload
+      }else {
+        newState = [...newState, payload]
       }
+      return newState
     default:
       return state
   }

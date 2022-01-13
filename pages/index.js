@@ -1,34 +1,26 @@
 import { useEffect } from 'react'
 import { 
   useDispatch, 
-  /* useSelector, */ 
-  connect 
+  useSelector
 } from 'react-redux'
 import Container from '@mui/material/Container'
-import { getFarms } from '../actions'
+import { getFarms } from 'actions'
 
-import FarmsSelect from '../components/FarmsSelect'
+import FarmsSelect from 'components/FarmsSelect'
 
-const Index = (props) => {
+const Index = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getFarms)
   }, [dispatch])
 
-  /* const state = useSelector((state) => state)
-  console.log(state) */
+  const state = useSelector((state) => state)
+  console.log(state)
   return (
     <Container style={{height: "90vh"}}>
-      <FarmsSelect farms={props.farms} />
+      <FarmsSelect farms={state.farms} />
     </Container>
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    farms: state.farms,
-    sensors: state.sensors,
-  }
-}
-export default connect(mapStateToProps)(Index)
-//export default Index
+export default Index
