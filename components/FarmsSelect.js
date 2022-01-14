@@ -3,6 +3,12 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+const Map = dynamic(
+  () => import('src/components/mapbox/Map'), 
+  { ssr: false }
+)
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -10,6 +16,11 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
+
+const onSelect = (e, id) => {
+  console.log(id)
+
+}
 
 const FarmsSelect = ({farms}) => {
   console.log(farms)
