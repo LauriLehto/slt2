@@ -5,7 +5,7 @@ import {
 } from 'react-redux'
 import { getSensors } from 'actions'
 
-import ShowSensors from 'components/ShowSensors'
+import FarmData from 'components/FarmData'
 
 const FarmsByIndex = () => {
 
@@ -21,7 +21,7 @@ const FarmsByIndex = () => {
   return (
     <div>
       {farm_id}
-      <ShowSensors farm_id={farm_id} />
+      <FarmData farm_id={farm_id} />
     </div>
   )
 }

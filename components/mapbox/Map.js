@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
+
+mapboxgl.accessToken = `${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`
 
 const Map = (props) => {
   const mapContainerRef = useRef(null);
@@ -43,7 +43,7 @@ const Map = (props) => {
       let lat = map.getCenter().lat.toFixed(4)
       let zoom = map.getZoom().toFixed(2)
       console.log({lng,lat,zoom})
-      updateMap({lng,lat,zoom})
+      //updateMap({lng,lat,zoom})
     })
     
     marker.setLngLat([lng, lat])
@@ -55,14 +55,8 @@ const Map = (props) => {
   
 
   return (
-    <Grid item>
-      <div className='sidebar'>
-        <div>
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-        </div>
-      </div>
-      <div className='map-container' ref={mapContainerRef} />
-    </Grid>
+    
+      <div className='map-container' style={{display: "flex", flex:1, height:"100px"}} ref={mapContainerRef} />
   );
 };
 

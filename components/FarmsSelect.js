@@ -1,14 +1,12 @@
+
 import Link from 'next/link'
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
+import FarmCard from 'components/FarmdCard'
 
-const Map = dynamic(
-  () => import('src/components/mapbox/Map'), 
-  { ssr: false }
-)
+
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -27,11 +25,13 @@ const FarmsSelect = ({farms}) => {
   return (
       <Grid container spacing={2} alignItems={'center'} justifyContent={'center'} style={{height: "100%"}}>
         {farms.map(farm => 
-          <Link href={`/farms/${farm.farm_id}`}>
-            <Grid item xs={6} key={farm.farm_id} id={farm.farm_id}>
+          <Link href={`/farms/${farm.farm_id}`} key={farm.farm_id}>
+            <Grid item xs={6}>
               {/* Mapbox */}
+              <FarmCard farm={farm} />
+              {/* <Map updateMap={updateMapProps} mapProps={mapProps} />
               <Item>{farm.name}</Item>
-              <Item>{farm.location}</Item>
+              <Item>{farm.location}</Item> */}
             </Grid>
           </Link>
         )}

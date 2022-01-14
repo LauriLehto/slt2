@@ -4,7 +4,7 @@ import {
 } from 'react-redux'
 
 import Datatable from 'components/DataTable'
-const ShowSensors = (props) => {
+const FarmData = (props) => {
 
   const { farms,sensors, farm_id} = props
 
@@ -17,11 +17,6 @@ const ShowSensors = (props) => {
   return (
     <div>
       {farm &&(<Datatable data={farm.sensors} />)}
-      {/* {farm.sensors.map(s => 
-        <>
-          <p key={s.datetime+s.sensor_type}>{s.datetime}{s.sensor_type}{s.value}</p><br/>
-        </>
-      )} */}
     </div>
   )
 }
@@ -32,4 +27,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(ShowSensors)
+export default connect(mapStateToProps)(FarmData)
