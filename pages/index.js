@@ -18,7 +18,7 @@ const Index = () => {
   console.log(state)
   return (
     <Container style={{height: "90vh"}}>
-      <FarmsSelect farms={state.farms} />
+      <FarmsSelect farms={state.farms} mode="full" />
     </Container>
   )
 }

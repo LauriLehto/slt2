@@ -13,16 +13,16 @@ export async function getFarms(dispatch) {
 }
 
 export async function getSensors({dispatch, farm_id}) { 
-  console.log("getSensors",farm_id)
+  //console.log("getSensors",farm_id)
   try {
     const farm = {}
     const result = await fetch(`/api/farms?farm_id=${farm_id}`)
     const sensors = await result.json()
     const filtered = filterSensors(sensors)
-    console.log(filtered)
+    //console.log(filtered)
     farm.farm_id = farm_id
     farm.sensors = filtered
-    console.log(farm)
+    //console.log(farm)
     return dispatch({ type: types.SENSORS, payload: farm });
   } catch (error) {
     return dispatch({ type: types.ERROR, error });

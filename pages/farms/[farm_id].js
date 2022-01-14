@@ -19,10 +19,7 @@ const FarmsByIndex = () => {
   }, [dispatch, farm_id])
   
   return (
-    <div>
-      {farm_id}
-      <FarmData farm_id={farm_id} />
-    </div>
+    <FarmData farm_id={farm_id} />
   )
 }
 

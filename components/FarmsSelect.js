@@ -1,40 +1,23 @@
 
 import Link from 'next/link'
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
-import FarmCard from 'components/FarmdCard'
+import FarmCard from 'components/FarmCard'
 
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-const onSelect = (e, id) => {
-  console.log(id)
-
-}
-
-const FarmsSelect = ({farms}) => {
-  console.log(farms)
+const FarmsSelect = ({farms, mode, farmId}) => {
+  //console.log(farms, mode)
   return (
       <Grid container spacing={2} alignItems={'center'} justifyContent={'center'} style={{height: "100%"}}>
-        {farms.map(farm => 
-          <Link href={`/farms/${farm.farm_id}`} key={farm.farm_id}>
-            <Grid item xs={6}>
-              {/* Mapbox */}
-              <FarmCard farm={farm} />
-              {/* <Map updateMap={updateMapProps} mapProps={mapProps} />
-              <Item>{farm.name}</Item>
-              <Item>{farm.location}</Item> */}
-            </Grid>
-          </Link>
-        )}
+        {farms.map(farm => {
+          console.log(farm.farm_id===farmId)
+          return (
+            <Link href={`/farms/${farm.farm_id}`} key={farm.farm_id}>
+              <Grid item xs={mode==="full" ? 6 : 3}>
+                <FarmCard farm={farm} useMap={mode==="full" ? true : false} raised={farm.farm_id===farmId} />
+              </Grid>
+            </Link>
+          )
+        })}
       </Grid>
   )
 }

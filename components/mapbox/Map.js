@@ -8,11 +8,10 @@ mapboxgl.accessToken = `${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`
 const Map = (props) => {
   const mapContainerRef = useRef(null);
 
-  const { updateMap, mapProps } = props
-  console.log(props)
+  const { updateMap, mapProps, useZoom } = props
   const [lng, setLng] = useState(mapProps.lng);
   const [lat, setLat] = useState(mapProps.lat);
-  const [zoom, setZoom] = useState(mapProps.zoom);
+  const [zoomLevel, setZoom] = useState(mapProps.zoom);
 
   const marker = new mapboxgl.Marker()
   
@@ -23,11 +22,13 @@ const Map = (props) => {
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
-      zoom: zoom
+      zoom: zoomLevel
     });
 
     // Add navigation control (the +/- zoom buttons)
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    if(useZoom){
+      map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    }
 
     map.on('move', () => {
       let lng = map.getCenter().lng.toFixed(4)
