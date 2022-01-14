@@ -13,6 +13,7 @@ const Map = dynamic(
 )
 
 export default function FarmCard({farm, useMap, raised}) {
+  console.log(farm)
   const theme = useTheme();
   const [ mapProps, updateMapProps ] = useState({ lng:25, lat:60.5, zoom: 6})
 
@@ -31,17 +32,18 @@ export default function FarmCard({farm, useMap, raised}) {
   },[])
 
   return (
-    <Card sx={{ display: 'flex', margin:"10px" }} raised={raised}>
+    <div style={{ display: 'flex', margin:"10px",position: "relative", width: "100%",paddingBottom: "50%" }} >
+      <Card sx={{position: "absolute", width: "100%", height: "100%",display: "flex", alignItems:"center", justifyContent:"center", padding:"10px" }} raised={raised}>
       {useMap && (
         <Box
-          sx={{ width: 151, height: 151 }}
+          sx={{ width: "50%", height:"75%" }}
           alt="Live from space album cover"
         >
-          <Map updateMap={updateMapProps} mapProps={mapProps} useZoom={false} />
+          <Map style={{height:"100%", paddingBottom:"100%"}} updateMap={updateMapProps} mapProps={mapProps} useZoom={false} />
         </Box>
       )}
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto',minHeight: '130px' }}>
+      <Box sx={{ flex: 1, margin:0, padding:0, display: 'flex', flexDirection: 'column' }}>
+        <CardContent sx={{ flex: '1 0 auto'}}>
           <Typography component="div" variant="h5" >
             {farm.name}
           </Typography>
@@ -50,6 +52,7 @@ export default function FarmCard({farm, useMap, raised}) {
           </Typography>
         </CardContent>
       </Box>
-    </Card>
+      </Card>
+    </div>
   );
 }

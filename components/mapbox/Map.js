@@ -57,7 +57,7 @@ const Map = (props) => {
 
   return (
     
-      <div className='map-container' style={{display: "flex", flex:1, height:"100px"}} ref={mapContainerRef} />
+      <div className='map-container' style={{display: "flex", flex:1, height:"100%"}} ref={mapContainerRef} />
   );
 };
 
