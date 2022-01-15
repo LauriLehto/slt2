@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid'
 import Datatable from 'components/DataTable'
 import FarmCard from 'components/FarmCard'
 import FarmsSelect from 'components/FarmsSelect'
+import Navigation from 'components/Navigation'
 
 const FarmData = (props) => {
   const { farms, sensors, farm_id} = props
@@ -28,12 +29,13 @@ const FarmData = (props) => {
   return (
     <Container>
       <FarmsSelect mode="nav" farms={farms} farmId={farm_id} />
+      <Navigation />
       <Grid container direction="row">
         <Grid item xs={8}>
           {farmSensors && (<Datatable data={farmSensors.sensors} />)}
         </Grid>
         <Grid item xs={4}>
-         {farm && (<FarmCard farm={farm} useMap />)}
+         {farm && (<FarmCard farm={farm} useMap vertical />)}
         </Grid>
       </Grid>
     </Container>

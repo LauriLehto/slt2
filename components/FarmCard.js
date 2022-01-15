@@ -12,7 +12,7 @@ const Map = dynamic(
   { ssr: false }
 )
 
-export default function FarmCard({farm, useMap, raised}) {
+export default function FarmCard({farm, useMap, raised, vertical}) {
   console.log(farm)
   const theme = useTheme();
   const [ mapProps, updateMapProps ] = useState({ lng:25, lat:60.5, zoom: 6})
@@ -32,11 +32,23 @@ export default function FarmCard({farm, useMap, raised}) {
   },[])
 
   return (
-    <div style={{ display: 'flex', margin:"10px",position: "relative", width: "100%",paddingBottom: "50%" }} >
-      <Card sx={{position: "absolute", width: "100%", height: "100%",display: "flex", alignItems:"center", justifyContent:"center", padding:"10px" }} raised={raised}>
+    <div style={{ display: 'flex', margin:"10px",position: "relative", width: "100%",paddingBottom: vertical ? "100%" : "50%" }} >
+      <Card 
+        raised={raised}
+        sx={{
+          position: "absolute", 
+          width: "100%", 
+          height: "100%",
+          display: "flex",
+          flexDirection:  vertical ? "column": "row",
+          alignItems:"center", 
+          justifyContent:"center", 
+          padding:"10px" 
+        }} 
+        >
       {useMap && (
         <Box
-          sx={{ width: "50%", height:"75%" }}
+          sx={{ width: vertical ? "100%" : "50%", height:"75%" }}
           alt="Live from space album cover"
         >
           <Map style={{height:"100%", paddingBottom:"100%"}} updateMap={updateMapProps} mapProps={mapProps} useZoom={false} />
