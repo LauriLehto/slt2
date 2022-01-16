@@ -17,7 +17,7 @@ const FarmData = (props) => {
   const { farms, sensors, farm_id, dates } = props
 //  const [dates, setDates] = useState([null, null]);
 
-//  console.log(dates)
+  console.log(dates)
 
   const router = useRouter()
   let data = []
@@ -26,6 +26,36 @@ const FarmData = (props) => {
   if(sensors.length && sensors.find(i => i.farm_id === farm_id).data.length){
     data = sensors.find(d => d.farm_id === farm_id).data
   }
+
+  if(dates[0] && dates[1]){
+    console.log("dates")
+    data = data.filter(d => {
+        const dateTime = new Date(d.datetime).getTime()
+        const dates0 = new Date(dates[0]).getTime()
+        const dates1 = new Date(dates[1]).getTime()
+        return dateTime < dates1 && dateTime > dates0
+    })
+    /* data = data.filter(d => {
+      if(dates[0]){
+        const dateTime = new Date(d.datetime).getTime()
+        const dates0 = new Date(dates[0]).getTime()
+        return dateTime > dates0
+      }
+      if(dates[1]){
+        const dateTime = new Date(d.datetime).getTime()
+        const dates1 = new Date(dates[1]).getTime()
+        return dateTime < dates1
+        }
+    }) */
+
+    console.log(data)
+  }
+
+  data.sort((first, second)=>{
+    const firstDate = new Date(first.datetime).getTime() 
+    const secondDate = new Date(second.datetime).getTime() 
+    return firstDate-secondDate
+  })
   
   useEffect(()=>{
     if(!farms.length){

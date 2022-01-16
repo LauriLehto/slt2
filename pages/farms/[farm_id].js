@@ -11,7 +11,7 @@ import FarmData from 'components/FarmData'
 const FarmsByIndex = (props) => {
 
   let loading = true
-  const { farms, sensors } = props
+  const { farms, sensors, dates } = props
 
 
   const router = useRouter()
@@ -29,14 +29,15 @@ const FarmsByIndex = (props) => {
   
   return (
     <>
-      {!loading && (<FarmData farm_id={farm_id} farms={farms} sensors={sensors} />) }
+      {!loading && (<FarmData farm_id={farm_id} farms={farms} sensors={sensors}dates={dates} />) }
     </>
   )
 }
 
 const mapStateToProps = (state) => ({
   farms: state.farms,
-  sensors: state.sensors
+  sensors: state.sensors,
+  dates: state.dates
 })
 
 

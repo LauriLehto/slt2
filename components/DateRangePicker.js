@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect , useDispatch} from 'react-redux'
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 import DateRangePicker from '@mui/lab/DateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -19,6 +20,7 @@ function BasicDateRangePicker(props) {
   }
 
   return (
+    <Grid item>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       {dates && (<DateRangePicker
         startText="Start Date"
@@ -36,6 +38,7 @@ function BasicDateRangePicker(props) {
         )}
       />)}
     </LocalizationProvider>
+    </Grid>
   );
 }
 
