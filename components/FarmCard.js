@@ -13,7 +13,6 @@ const Map = dynamic(
 )
 
 export default function FarmCard({farm, useMap, raised, vertical}) {
-  console.log(farm)
   const theme = useTheme();
   const [ mapProps, updateMapProps ] = useState({ lng:25, lat:60.5, zoom: 6})
 

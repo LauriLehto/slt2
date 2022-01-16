@@ -9,6 +9,7 @@ const Map = (props) => {
   const mapContainerRef = useRef(null);
 
   const { updateMap, mapProps, useZoom } = props
+
   const [lng, setLng] = useState(mapProps.lng);
   const [lat, setLat] = useState(mapProps.lat);
   const [zoomLevel, setZoom] = useState(mapProps.zoom);
@@ -22,12 +23,14 @@ const Map = (props) => {
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
-      zoom: zoomLevel
+      zoom: zoomLevel,
     });
 
     // Add navigation control (the +/- zoom buttons)
     if(useZoom){
       map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    } else {
+      map.scrollZoom.disable();
     }
 
     map.on('move', () => {

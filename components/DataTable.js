@@ -134,7 +134,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected } = props;
+  const { numSelected, farm } = props;
 
   return (
     <Toolbar
@@ -163,7 +163,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Uploaded Data
+          {farm && farm.name}
         </Typography>
       )}
 
@@ -191,7 +191,7 @@ EnhancedTableToolbar.propTypes = {
 export default function EnhancedTable(props) {
 
   //const data = props.data.map(d => createData(d[0], d[1], d[2], d[3]))
-  const data = props.data
+  const { data, farm } = props
 
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -257,7 +257,7 @@ export default function EnhancedTable(props) {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} header={'Nutrition'} />
+        <EnhancedTableToolbar numSelected={selected.length} header={'Nutrition'} farm={farm} />
         <TableContainer>
           <Table
             sx={{ maxWidth: 750 }}
@@ -326,10 +326,10 @@ export default function EnhancedTable(props) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
+      {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
-      />
+      /> */}
     </Box>
   );
 }

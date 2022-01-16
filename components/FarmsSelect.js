@@ -9,7 +9,6 @@ const FarmsSelect = ({farms, mode, farmId}) => {
   return (
       <Grid container spacing={2} alignItems={'center'} justifyContent={'center'} style={{height: "100%"}}>
         {farms.map(farm => {
-          console.log(farm.farm_id===farmId)
           return (
             <Link href={`/farms/${farm.farm_id}`} key={farm.farm_id}>
               <Grid item xs={mode==="full" ? 6 : 3}>

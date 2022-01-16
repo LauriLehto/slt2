@@ -1,17 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { 
-  useDispatch
+  useDispatch,
+  connect
 } from 'react-redux'
 import { getSensors } from 'actions'
 
 import FarmData from 'components/FarmData'
 
-const FarmsByIndex = () => {
+const FarmsByIndex = (props) => {
+
+  let loading = true
+  const { farms, sensors } = props
+
 
   const router = useRouter()
   const { farm_id } = router.query
 
+  if(sensors.findIndex(s => s.farm_id===farm_id)!==-1){
+    console.log("success", sensors.findIndex(s => s.farm_id===farm_id)!==-1)
+    loading = false
+  }
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -19,9 +28,16 @@ const FarmsByIndex = () => {
   }, [dispatch, farm_id])
   
   return (
-    <FarmData farm_id={farm_id} />
+    <>
+      {!loading && (<FarmData farm_id={farm_id} farms={farms} sensors={sensors} />) }
+    </>
   )
 }
 
-export default FarmsByIndex
+const mapStateToProps = (state) => ({
+  farms: state.farms,
+  sensors: state.sensors
+})
 
+
+export default connect(mapStateToProps)(FarmsByIndex)

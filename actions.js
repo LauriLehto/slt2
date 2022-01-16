@@ -21,32 +21,10 @@ export async function getSensors({dispatch, farm_id}) {
     const filtered = filterSensors(sensors)
     //console.log(filtered)
     farm.farm_id = farm_id
-    farm.sensors = filtered
+    farm.data = filtered
     //console.log(farm)
     return dispatch({ type: types.SENSORS, payload: farm });
   } catch (error) {
     return dispatch({ type: types.ERROR, error });
   }
 }
-
-// INITIALIZES CLOCK ON SERVER
-export const serverRenderClock = () => (dispatch) =>
-  dispatch({
-    type: types.TICK,
-    payload: { light: false, ts: Date.now() },
-  })
-
-// INITIALIZES CLOCK ON CLIENT
-export const startClock = () => (dispatch) =>
-  setInterval(() => {
-    dispatch({ type: types.TICK, payload: { light: true, ts: Date.now() } })
-  }, 1000)
-
-// INCREMENT COUNTER BY 1
-export const incrementCount = () => ({ type: types.INCREMENT })
-
-// DECREMENT COUNTER BY 1
-export const decrementCount = () => ({ type: types.DECREMENT })
-
-// RESET COUNTER
-export const resetCount = () => ({ type: types.RESET })
