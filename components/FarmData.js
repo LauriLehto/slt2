@@ -17,7 +17,6 @@ const FarmData = (props) => {
   const { farms, sensors, farm_id, dates } = props
 //  const [dates, setDates] = useState([null, null]);
 
-  console.log(dates)
 
   const router = useRouter()
   let data = []
@@ -28,27 +27,12 @@ const FarmData = (props) => {
   }
 
   if(dates[0] && dates[1]){
-    console.log("dates")
     data = data.filter(d => {
         const dateTime = new Date(d.datetime).getTime()
         const dates0 = new Date(dates[0]).getTime()
         const dates1 = new Date(dates[1]).getTime()
         return dateTime < dates1 && dateTime > dates0
     })
-    /* data = data.filter(d => {
-      if(dates[0]){
-        const dateTime = new Date(d.datetime).getTime()
-        const dates0 = new Date(dates[0]).getTime()
-        return dateTime > dates0
-      }
-      if(dates[1]){
-        const dateTime = new Date(d.datetime).getTime()
-        const dates1 = new Date(dates[1]).getTime()
-        return dateTime < dates1
-        }
-    }) */
-
-    console.log(data)
   }
 
   data.sort((first, second)=>{
@@ -63,14 +47,19 @@ const FarmData = (props) => {
     }
   })
 
-  console.log(farms)
   const charts = ["Rainfall", "Ph", "Temperature"]
-
-  console.log(dates)
 
   return (
     <Container>
       <FarmsSelect mode="nav" farms={farms} farmId={farm_id} />
+      <Grid container direction="row" spacing={2} style={{paddingTop: "10px"}}>
+        <Grid item xs={8}>
+          {data && (<Datatable data={data} />)}
+        </Grid>
+        <Grid item xs={4}>
+         {farm && (<FarmCard farm={farm} useMap vertical />)}
+        </Grid>
+      </Grid>
       <PageControls />
       {data.length && farms.length && (
         <Grid container spacing={{xs:2}} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -85,14 +74,6 @@ const FarmData = (props) => {
           )}
         </Grid>
       )}
-      <Grid container direction="row" spacing={2}>
-        <Grid item xs={8}>
-          {data && (<Datatable data={data} />)}
-        </Grid>
-        <Grid item xs={4}>
-         {farm && (<FarmCard farm={farm} useMap vertical />)}
-        </Grid>
-      </Grid>
     </Container>
   )
 }

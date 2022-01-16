@@ -2,7 +2,6 @@ import { combineReducers } from 'redux'
 import * as types from './types'
 
 const farmReducer = (state = [], { type, payload }) => {
-  //console.log(type)
   switch (type) {
     case types.FARMS:
       return payload
@@ -14,7 +13,6 @@ const farmReducer = (state = [], { type, payload }) => {
 const sensorReducer = (state = [], { type, payload }) => {
   switch (type) {
     case types.SENSORS:
-      //console.log("state length", state.length, "payload", payload)
       let newState = [...state]
       const farmIndex = newState.findIndex(object => object.farm_id === payload.farm_id )
       if(farmIndex!==-1){
@@ -31,7 +29,6 @@ const sensorReducer = (state = [], { type, payload }) => {
 const datesReducer = ( state = [null, null], { type, payload }) => {
   switch (type) {
     case types.DATES:
-      console.log(payload)
       return payload
     default:
       return state

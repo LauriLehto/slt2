@@ -15,19 +15,16 @@ export async function getFarms(dispatch) {
 }
 
 export async function getSensors({dispatch, farm_id}) { 
-  console.log("getSensors",dispatch,farm_id)
   try {
     const farm = {}
     const result = await fetch(`/api/farms?farm_id=${farm_id}`)
     const sensors = await result.json()
     if(sensors.length){
       const filtered = filterSensors(sensors)
-      //console.log(filtered)
       farm.farm_id = farm_id
       farm.data = filtered
     }
     
-    //console.log(farm)
     dispatch({ type: types.SENSORS, payload: farm });
     return farm
   } catch (error) {
@@ -37,7 +34,6 @@ export async function getSensors({dispatch, farm_id}) {
 }
 
 export function setDates({dispatch, dates}) {
-  console.log(dispatch, dates)
   dispatch({ type: types.DATES, payload: dates})
   return dates
 }

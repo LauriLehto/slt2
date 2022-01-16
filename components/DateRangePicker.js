@@ -44,7 +44,6 @@ function BasicDateRangePicker(props) {
 
 function mapStateToProps(state) {
   const { dates } = state
-  console.log(state)
   return { dates }
 }
 

@@ -15,7 +15,6 @@ const Index = () => {
   }, [dispatch])
 
   const state = useSelector((state) => state)
-  console.log(state)
   return (
     <Container style={{height: "90vh"}}>
       <FarmsSelect farms={state.farms} mode="full" />

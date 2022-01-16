@@ -4,7 +4,6 @@ const access_token = process.env.MAPBOX_API_KEY
 
 export default async function handler(req, res) {
 
-  console.log(req.query)
   try {
     const url = `${apiUrl}/geocoding/v5/${endpoint}/${req.query.search}.json?access_token=${access_token}`
     const response = await fetch(url)

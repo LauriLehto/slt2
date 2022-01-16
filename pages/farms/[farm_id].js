@@ -18,7 +18,6 @@ const FarmsByIndex = (props) => {
   const { farm_id } = router.query
 
   if(sensors.findIndex(s => s.farm_id===farm_id)!==-1){
-    console.log("success", sensors.findIndex(s => s.farm_id===farm_id)!==-1)
     loading = false
   }
   const dispatch = useDispatch()
