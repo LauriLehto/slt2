@@ -147,7 +147,7 @@ const EnhancedTableToolbar = (props) => {
         }),
       }}
     >
-      {numSelected > 0 ? (
+      {/* {numSelected > 0 ? (
         <Typography
           sx={{ flex: '1 1 100%' }}
           color="inherit"
@@ -165,7 +165,7 @@ const EnhancedTableToolbar = (props) => {
         >
           {farm && farm.name}
         </Typography>
-      )}
+      )} */}
 
       {/* {numSelected > 0 ? (
         <Tooltip title="Delete">
@@ -257,7 +257,7 @@ export default function EnhancedTable(props) {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} header={'Nutrition'} farm={farm} />
+        {/* <EnhancedTableToolbar numSelected={selected.length} header={'Nutrition'} farm={farm} /> */}
         <TableContainer>
           <Table
             sx={{ maxWidth: 750 }}
@@ -283,12 +283,12 @@ export default function EnhancedTable(props) {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      //onClick={(event) => handleClick(event, row.name)}
                       //role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.datetime+row.sensor_type}
-                      selected={isItemSelected}
+                      //selected={isItemSelected}
                     >
                       <TableCell
                         component="th"

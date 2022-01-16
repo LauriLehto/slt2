@@ -28,11 +28,22 @@ const sensorReducer = (state = [], { type, payload }) => {
   }
 }
 
+const datesReducer = ( state = [null, null], { type, payload }) => {
+  switch (type) {
+    case types.DATES:
+      console.log(payload)
+      return payload
+    default:
+      return state
+  }
+}
+
 
 // COMBINED REDUCERS
 const reducers = {
   sensors: sensorReducer,
   farms: farmReducer,
+  dates: datesReducer
 }
 
 export default combineReducers(reducers)

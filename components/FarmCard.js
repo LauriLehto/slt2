@@ -31,7 +31,7 @@ export default function FarmCard({farm, useMap, raised, vertical}) {
   },[])
 
   return (
-    <div style={{ display: 'flex', margin:"10px",position: "relative", width: "100%",paddingBottom: vertical ? "100%" : "50%" }} >
+    <div style={{ display: 'flex',position: "relative", width: "100%", paddingBottom: vertical ? "100%" : "50%" }} >
       <Card 
         raised={raised}
         sx={{
@@ -41,8 +41,7 @@ export default function FarmCard({farm, useMap, raised, vertical}) {
           display: "flex",
           flexDirection:  vertical ? "column": "row",
           alignItems:"center", 
-          justifyContent:"center", 
-          padding:"10px" 
+          justifyContent:"center"
         }} 
         >
       {useMap && (

@@ -30,7 +30,7 @@ const SensorChart = (props) => {
   
   return (
     <HighchartsReact
-      //containerProps={{ style: {position: "relatice", flex: 1 } }}
+      containerProps={{ style: { width: "100%" } }}
       highcharts={Highcharts}
       options={options}
     />

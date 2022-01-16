@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { 
   useSelector,
   connect
@@ -10,11 +10,15 @@ import Grid from '@mui/material/Grid'
 import Datatable from 'components/DataTable'
 import FarmCard from 'components/FarmCard'
 import FarmsSelect from 'components/FarmsSelect'
-import Navigation from 'components/Navigation'
+import PageControls from 'components/PageControls'
 import SensorChart from 'components/SensorChart'
 
 const FarmData = (props) => {
-  const { farms, sensors, farm_id } = props
+  const { farms, sensors, farm_id, dates } = props
+//  const [dates, setDates] = useState([null, null]);
+
+//  console.log(dates)
+
   const router = useRouter()
   let data = []
   const farm = farms.filter(f => f.farm_id===farm_id)[0]
@@ -32,14 +36,16 @@ const FarmData = (props) => {
   console.log(farms)
   const charts = ["Rainfall", "Ph", "Temperature"]
 
+  console.log(dates)
+
   return (
     <Container>
       <FarmsSelect mode="nav" farms={farms} farmId={farm_id} />
-      <Navigation />
+      <PageControls />
       {data.length && farms.length && (
         <Grid container spacing={{xs:2}} columns={{ xs: 4, sm: 8, md: 12 }}>
           {charts.map(chart =>
-            <Grid item xs={2} sm={4} md={4} key={chart} sx={{ display:"flex"}}>
+            <Grid item xs={2} sm={4} md={6} key={chart} sx={{ display:"flex"}}>
               <SensorChart 
                 title={chart}
                 farm={farms.find(f=>f.farm_id===farm_id)}
@@ -49,7 +55,7 @@ const FarmData = (props) => {
           )}
         </Grid>
       )}
-      <Grid container direction="row">
+      <Grid container direction="row" spacing={2}>
         <Grid item xs={8}>
           {data && (<Datatable data={data} />)}
         </Grid>
